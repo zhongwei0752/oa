@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+    <meta content="telephone=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>修改回答</title>
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" href="./templates/css/oa_base.css">
+    <link rel="stylesheet" href="./templates/css/oa_main.css">
+    <style>
+        ::-webkit-input-placeholder { color: #CDCDCD;}
+        input:-moz-placeholder { color: #CDCDCD;}
+    </style>
+</head>
+<body>
+<form action="changeanswer.php" name="changeanswer" method="POST">
+    <div class="mainbody">
+        <div class="welcome">
+            <span class="w_s1">修改回答</span>
+        </div>
+        
+        <div class="nfu_detail_box">
+            <div class="nfu_d_d">
+            <input class="nfu_in1" type="hidden" name="a_id" value="<{$a_id}>" >
+                <div class="nfu_d_d_l" style="position: relative;top: 5px;text-align: right">修改者：&nbsp;</div>
+                <div class="nfu_d_d_r"><input class="nfu_in1" type="text" name="q_creator" value="<{$who_answer}>" placeholder="请输入您的名字..."></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="text-align: right">问题描述：&nbsp;</div>
+                <div class="nfu_d_d_r">
+                    <textarea class="nfu_d_d_textarea" name="question" placeholder="客户问..."><{$question}></textarea>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="text-align: right">我的回答：&nbsp;</div>
+                <div class="nfu_d_d_r">
+                    <textarea class="nfu_d_d_textarea" name="my_answer" placeholder="可以这样理解..."><{$my_answer}></textarea>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="position: relative;top: 5px;text-align: right">标签分类：&nbsp;</div>
+                <div class="nfu_d_d_r"><input class="nfu_in1" type="text" name="q_tag" value="<{$q_tag}>" placeholder="请输入标签..."></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="position: relative;top: 5px;text-align: right">创建日期：&nbsp;</div>
+                <div class="nfu_d_d_r"><input class="nfu_in1" type="date" name="a_time"></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="input_box submin_box">
+                <input type="submit" name="submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;交" >
+            </div>
+            <br>
+        </div>
+
+    </div>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+    <meta content="telephone=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>搜索结果</title>
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" href="css/oa_base.css">
+    <link rel="stylesheet" href="css/oa_main.css">
+</head>
+<body>
+    <div class="mainbody">
+        <div class="welcome">
+            <span class="w_s1">搜索结果</span>
+        </div>
+        <div class="input_box">
+            <input type="text" placeholder="请输入搜索内容" >
+            <div style="margin-top: -40px;position: relative;z-index: 2"><img src="img/searchbuttom.png" class="searchpic"></div>
+        </div>
+       <div style="height: 40px;width: 100%"></div>
+
+        <div class="userwork_box">
+           <div class="user_a" data-name="0">
+               <div class="kp_li_d2">  <span >保利物业</span>&nbsp;&nbsp;<span>朱丽叶</span>&nbsp;&nbsp;<span>2分钟前</span> </div>
+           </div>
+            <div class="user_work_ul">
+                <ul>
+                    <li class="l_ok">
+                       <div class="kp_li_d">陈晓娟说可以签约&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_notok">
+                        <div class="kp_li_d">陈晓娟说等下签约&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_doing">
+                        <div class="kp_li_d">陈晓娟说走流程&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_giveup">
+                        <div class="kp_li_d">陈晓娟说放弃签约&nbsp;14-3-12</div>
+                    </li>
+                    <li>
+                        <div class="nb_d4">
+                            <input type="button" value="新增跟进情况">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="user_a" data-name="0">
+
+                <div class="kp_li_d2"> <span >万科物业</span>&nbsp;&nbsp;<span>熊黛林</span>&nbsp;&nbsp;<span>2分钟前</span></div>
+            </div>
+            <div class="user_work_ul">
+                <ul>
+                    <li class="l_ok">
+                        <div class="kp_li_d">陈晓娟说可以签约&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_notok">
+                        <div class="kp_li_d">陈晓娟说等下签约&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_doing">
+                        <div class="kp_li_d">陈晓娟说走流程&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_giveup">
+                        <div class="kp_li_d">陈晓娟说放弃签约&nbsp;14-3-12</div>
+                    </li>
+                    <li>
+                        <div class="nb_d4">
+                            <input type="button" value="新增跟进情况">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="user_a" data-name="0">
+                <div class="kp_li_d2"><span >奥园物业</span>&nbsp;&nbsp;<span>刘德华</span>&nbsp;&nbsp;<span>2分钟前</span></div>
+
+            </div>
+            <div class="user_work_ul">
+                <ul>
+                    <li class="l_ok">
+                         <div class="kp_li_d">陈晓娟说可以签约&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_notok">
+                        <div class="kp_li_d">陈晓娟说等下签约&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_doing">
+                        <div class="kp_li_d">陈晓娟说走流程&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_giveup">
+                        <div class="kp_li_d">陈晓娟说放弃签约&nbsp;14-3-12</div>
+                    </li>
+                    <li>
+                        <div class="nb_d4">
+                            <input type="button" value="新增跟进情况">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <br>
+        <div class="input_box submin_box">
+            <input type="button" value="更&nbsp;&nbsp;&nbsp;&nbsp;多" >
+        </div>
+        <br>
+    </div>
+</body>
+<script>
+    //选择显示签约和不签约客户按钮
+    var n = 0;
+   $('.nb_d1 img').click(function(){
+     //  alert('dee') ;
+      if(n%2==0)
+      {
+          $('.nb_d1 img').attr('src','img/ok.png');
+          n = n+1;
+      }
+       else
+      {
+          $('.nb_d1 img').attr('src','img/notok.png');
+          n = n-1;
+      }
+   })
+    //打开列表
+    $('.user_a').click(function(){
+        var t = parseInt($(this).attr('data-name'));
+       // alert(t);
+        if(t==0)
+        {
+            $(this).css({backgroundImage:"url('img/select2.png')"});
+            $(this).next('.user_work_ul').fadeIn();
+            t=1;
+            $(this).attr("data-name",function(){
+                var a=t;
+                return a;
+            } )
+        }
+         else
+        {
+            $(this).css({backgroundImage:"url('img/select.png')"});
+            $(this).next('.user_work_ul').fadeOut();
+            t=0;
+            $(this).attr("data-name",function(){
+                var a=t;
+                return a;
+            } )
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+    <meta content="telephone=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>客户跟进情况</title>
+    <script src="./templates/js/jquery.js"></script>
+    <link rel="stylesheet" href="./templates/css/oa_base.css">
+    <link rel="stylesheet" href="./templates/css/oa_main.css">
+</head>
+<body>
+    <div class="mainbody">
+        <div class="welcome">
+            <span class="w_s1">客户跟进情况</span>
+        </div>
+        <div class="input_box">
+            <input type="text" id="search" placeholder="请输入搜索内容" >
+            <div id="searchsubmit" style="margin-top: -40px;position: relative;z-index: 2"><img src="./templates/img/searchbuttom.png" class="searchpic"></div>
+        </div>
+       <div style="height: 40px;width: 100%"></div>
+       <div class="newcomtus_box">
+          <{if $qianyue}>
+          <{if $search}>
+           <a href="custom.php?search=<{$search}>">
+           <{else}>
+           <a href="custom.php">
+           <{/if}>
+            <div class="nb_d1">
+               <img src="./templates/img/ok.png">
+           </div>
+         </a>
+         <{else}>
+         <{if $search}>
+         <a href="custom.php?status=qianyue&search=<{$search}>">
+         <{else}>
+         <a href="custom.php?status=qianyue">
+         <{/if}>
+            <div class="nb_d1">
+               <img src="./templates/img/notok.png">
+           </div>
+         </a>
+          <{/if}>
+           <div class="nb_d2">
+               不显示已签约或者放弃客户
+           </div>
+           <a href="newcustom.php">
+            <div class="nb_d3">
+               <input type="button" value="新建客户">
+           </div>
+           </a>
+           <div class="clear"></div>
+
+       </div>
+        <div class="userwork_box">
+          <{section name=sec1 loop=$list}>
+           <div class="user_a" data-name="0">
+               <div class="kp_li_d2">  <span ><{$list[sec1].username}></span>&nbsp;&nbsp;<span><{$list[sec1].name}></span>&nbsp;&nbsp;<span><{$list[sec1].dateline}></span> </div>
+           </div>
+            <div class="user_work_ul">
+                <ul>
+                  <{section name=sec2 loop=$list[sec1].customstatus}>
+                  <a href="newcustomstatus.php?id=<{$list[sec1].id}>&customstatus=<{$list[sec1].customstatus[sec2].id}>">
+                  <{if $list[sec1].customstatus[sec2].update1=='1'}>
+                  <li class="l_ok">
+                  <{elseif $list[sec1].customstatus[sec2].update1=='2'}>
+                  <li class="l_notok">
+                  <{elseif $list[sec1].customstatus[sec2].update1=='3'}>
+                  <li class="l_doing">
+                  <{else}>
+                  <li class="l_giveup">
+                  <{/if}>
+                  
+                       <div class="kp_li_d">
+                        <{$list[sec1].customstatus[sec2].name}>说<{$list[sec1].customstatus[sec2].talkstatus}>&nbsp;<{$list[sec1].customstatus[sec2].dateline}><!-- 陈晓娟说可以签约&nbsp;14-3-12 --></div>
+                    </li>
+                  </a>
+                  <{/section}>
+                    <a href="newcustomstatus.php?id=<{$list[sec1].id}>">
+                      <li>
+                        <div class="nb_d4">
+                            <input type="button" value="新增跟进情况">
+                        </div>
+                      </li>
+                    </a>
+                </ul>
+            </div>
+            <{/section}>
+           <!--  <div class="user_a" data-name="0">
+
+                <div class="kp_li_d2"> <span >万科物业</span>&nbsp;&nbsp;<span>熊黛林</span>&nbsp;&nbsp;<span>2分钟前</span></div>
+            </div>
+            <div class="user_work_ul">
+                <ul>
+                    <li class="l_ok">
+                        <div class="kp_li_d">陈晓娟说可以签约&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_notok">
+                        <div class="kp_li_d">陈晓娟说等下签约&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_doing">
+                        <div class="kp_li_d">陈晓娟说走流程&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_giveup">
+                        <div class="kp_li_d">陈晓娟说放弃签约&nbsp;14-3-12</div>
+                    </li>
+                    <li>
+                        <div class="nb_d4">
+                            <input type="button" value="新增跟进情况">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="user_a" data-name="0">
+                <div class="kp_li_d2"><span >奥园物业</span>&nbsp;&nbsp;<span>刘德华</span>&nbsp;&nbsp;<span>2分钟前</span></div>
+
+            </div>
+            <div class="user_work_ul">
+                <ul>
+                    <li class="l_ok">
+                         <div class="kp_li_d">陈晓娟说可以签约&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_notok">
+                        <div class="kp_li_d">陈晓娟说等下签约&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_doing">
+                        <div class="kp_li_d">陈晓娟说走流程&nbsp;14-3-12</div>
+                    </li>
+                    <li class="l_giveup">
+                        <div class="kp_li_d">陈晓娟说放弃签约&nbsp;14-3-12</div>
+                    </li>
+                    <li>
+                        <div class="nb_d4">
+                            <input type="button" value="新增跟进情况">
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+
+        </div>
+        <br>
+        <div class="input_box submin_box">
+            <a href="custom.php?page=<{$page}>"><input type="button" value="更&nbsp;&nbsp;&nbsp;&nbsp;多" ></a>
+        </div>
+        <br>
+    </div>
+</body>
+<script>
+    //选择显示签约和不签约客户按钮
+    var n = 0;
+   $('.nb_d1 img').click(function(){
+     //  alert('dee') ;
+      if(n%2==0)
+      {
+          $('.nb_d1 img').attr('src','./templates/img/ok.png');
+          n = n+1;
+      }
+       else
+      {
+          $('.nb_d1 img').attr('src','./templates/img/notok.png');
+          n = n-1;
+      }
+   })
+    //打开列表
+    $('.user_a').click(function(){
+        var t = parseInt($(this).attr('data-name'));
+       // alert(t);
+        if(t==0)
+        {
+            $(this).css({backgroundImage:"url('./templates/img/select2.png')"});
+            $(this).next('.user_work_ul').fadeIn();
+            t=1;
+            $(this).attr("data-name",function(){
+                var a=t;
+                return a;
+            } )
+        }
+         else
+        {
+            $(this).css({backgroundImage:"url('./templates/img/select.png')"});
+            $(this).next('.user_work_ul').fadeOut();
+            t=0;
+            $(this).attr("data-name",function(){
+                var a=t;
+                return a;
+            } )
+        }
+    })
+    //搜索
+    $('#searchsubmit').click(function(){
+      var search=$("#search").val();
+      window.location.href="custom.php?search="+search+"";
+    })
+</script>
+</html>

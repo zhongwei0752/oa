@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+    <meta content="telephone=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>添加客户跟进情况</title>
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" href="./templates/css/oa_base.css">
+    <link rel="stylesheet" href="./templates/css/oa_main.css">
+    <style>
+        ::-webkit-input-placeholder { color: #CDCDCD;}
+        input:-moz-placeholder { color: #CDCDCD;}
+    </style>
+</head>
+<body>
+  <form action="newcustomstatus.php" name="newcustomstatus" method="POST">
+    <div class="mainbody">
+        <div class="welcome">
+            <span class="w_s1">添加客户跟进情况</span>
+        </div>
+        <div class="nfu_detail_box">
+            <div class="nfu_d_d">
+                <span>日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期：<input type="date" name="dateline" class="nfu_d_t2" value="<{$dateline}>"></span>
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="position: relative;top: 5px">简报描述：</div>
+                <div class="nfu_d_d_r"><input class="nfu_in1" type="text" name="message" value="<{$message}>" placeholder="情况描述..."></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l">交流方式：</div>
+                <!--1为电话，2为当面拜访，3为喝茶，4为请客 -->
+                <div class="nfu_d_d_r">
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $talk=='1'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="1" name="talk" onclick="chooseOne_s1(this)">
+                        <span class="nfu_in2">电话</span>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $talk=='2'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="2" name="talk" onclick="chooseOne_s1(this)">
+                        <span class="nfu_in2">当面拜访</span>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $talk=='3'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="3" name="talk" onclick="chooseOne_s1(this)">
+                        <span class="nfu_in2">喝茶</span>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $talk=='4'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="4" name="talk" onclick="chooseOne_s1(this)">
+                        <span class="nfu_in2">请客</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l">状态更新：</div>
+                <!--1为初次拜访，2为走流程，3为签约完毕，4为暂时放弃 -->
+                <div class="nfu_d_d_r">
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $update1=='1'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="1" name="update" onclick="chooseOne_s2(this)">
+                        <span class="nfu_in2">初次拜访</span>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $update1=='2'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="2" name="update" onclick="chooseOne_s2(this)">
+                        <span class="nfu_in2">走流程</span>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $update1=='3'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="3" name="update" onclick="chooseOne_s2(this)">
+                        <span class="nfu_in2">签约完毕</span>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $update1=='4'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="4" name="update" onclick="chooseOne_s2(this)">
+                        <span class="nfu_in2">暂时放弃</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l">客户态度：</div>
+                <!--1为迫切，2为热情，3为冷淡 -->
+                <div class="nfu_d_d_r">
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $attitude=='1'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="1" name="attitude" onclick="chooseOne_s3(this)">
+                        <span class="nfu_in2">迫切</span>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $attitude=='2'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="2" name="attitude" onclick="chooseOne_s3(this)">
+                        <span class="nfu_in2">热情</span>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" <{if $attitude=='3'}>checked<{/if}> style=" -webkit-appearance:checkbox" value="3" name="attitude" onclick="chooseOne_s3(this)">
+                        <span class="nfu_in2">冷淡</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="position: relative;top: 5px">成功希望：</div>
+                <div class="nfu_d_d_r" ><input class="nfu_      in1 nfu_in3" type="text" name="chenggong" placeholder="请输入数值" value="<{$chenggong}>"><span>&nbsp;%</span></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" >下次计划：<br>跟进时间</div>
+                <div class="nfu_d_d_r" style="position: relative;top: 5px"><input class="nfu_in1 nfu_in3" type="text" placeholder="请输入天数" name="date" value="<{$date1}>"><span>&nbsp;天后</span></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="position: relative;top: 5px">同行同事：</div>
+                <div class="nfu_d_d_r">
+                   <select class="nfu_sel" name="parter">
+                       <{if $parter}>
+                       <option value="<{$parter}>"><{$name}></option>
+                       <{/if}>
+                       <{section name=sec1 loop=$list}>
+                       <option value="<{$list[sec1].uid}>"><{$list[sec1].username}></option>
+                        <{/section}>
+                   </select>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="nfu_d_d nfu_d_d2">
+                 可报销费用
+            </div>
+
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="position: relative;top: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交通：</div>
+                <div class="nfu_d_d_r" ><input class="nfu_in1 nfu_in3" type="text" name="jiaotong" placeholder="请输入数值" value="<{$jiaotong}>"><span>&nbsp;元</span></div>
+                <div class="clear"></div>
+            </div>
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="position: relative;top: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;餐费：</div>
+                <div class="nfu_d_d_r" ><input class="nfu_in1 nfu_in3" type="text" name="canfei" placeholder="请输入数值" value="<{$canfei}>"><span>&nbsp;元</span></div>
+                <div class="clear"></div>
+            </div>
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="position: relative;top: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;住宿：</div>
+                <div class="nfu_d_d_r" ><input class="nfu_in1 nfu_in3" type="text" name="zhusu" placeholder="请输入数值" value="<{$zhusu}>"><span>&nbsp;元</span></div>
+                <div class="clear"></div>
+            </div>
+            <div class="nfu_d_d">
+                <div class="nfu_d_d_l" style="position: relative;top: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他：</div>
+                <div class="nfu_d_d_r" ><input class="nfu_in1 nfu_in3" name="qita" type="text" placeholder="请输入数值" value="<{$qita}>"><span>&nbsp;元</span></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="input_box submin_box">
+                <input type="hidden" name="id" value="<{$id}>">
+                <{if $customstatus}>
+                <input type="hidden" name="customstatus" value="<{$customstatus}>">
+                <{/if}>
+                <{if $allowctc}>
+                <{if $loginuid}>
+                <input type="submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;交" >
+                <{/if}>
+                <{else}>
+                <input type="submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;交" >
+                <{/if}>
+            </div>
+            <br>
+        </div>
+
+    </div>
+  </form>
+</body>
+<script>
+  // alert($(window).width())
+  //交流方式按钮选择
+  function chooseOne_s1(cb){
+      //先取得同name的chekcBox的集合物件
+      var obj = document.getElementsByName("talk");
+      for (i=0; i<obj.length; i++){
+          //判斷obj集合中的i元素是否為cb，若否則表示未被點選
+          if (obj[i]!=cb) obj[i].checked = false;
+          //若是 但原先未被勾選 則變成勾選；反之 則變為未勾選
+          //else  obj[i].checked = cb.checked;
+          //若要至少勾選一個的話，則把上面那行else拿掉，換用下面那行
+          else obj[i].checked = true;
+      }
+  }
+  //状态更新按钮选择
+  function chooseOne_s2(cb){
+      //先取得同name的chekcBox的集合物件
+      var obj = document.getElementsByName("update");
+      for (i=0; i<obj.length; i++){
+          //判斷obj集合中的i元素是否為cb，若否則表示未被點選
+          if (obj[i]!=cb) obj[i].checked = false;
+          //若是 但原先未被勾選 則變成勾選；反之 則變為未勾選
+          //else  obj[i].checked = cb.checked;
+          //若要至少勾選一個的話，則把上面那行else拿掉，換用下面那行
+          else obj[i].checked = true;
+      }
+  }
+  //客户态度按钮选择
+  function chooseOne_s3(cb){
+      //先取得同name的chekcBox的集合物件
+      var obj = document.getElementsByName("attitude");
+      for (i=0; i<obj.length; i++){
+          //判斷obj集合中的i元素是否為cb，若否則表示未被點選
+          if (obj[i]!=cb) obj[i].checked = false;
+          //若是 但原先未被勾選 則變成勾選；反之 則變為未勾選
+          //else  obj[i].checked = cb.checked;
+          //若要至少勾選一個的話，則把上面那行else拿掉，換用下面那行
+          else obj[i].checked = true;
+      }
+  }
+</script>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+    <meta content="telephone=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>知识库</title>
+    <script src="./templates/js/jquery.js"></script>
+    <link rel="stylesheet" href="./templates/css/oa_base.css">
+    <link rel="stylesheet" href="./templates/css/oa_main.css">
+</head>
+<body>
+    <div class="mainbody">
+        <div class="welcome">
+            <span class="w_s1">知识库</span>
+        </div>
+        <div class="input_box">
+            <input type="text" id="search" placeholder="请输入搜索内容" >
+            <div id="searchsubmit" style="margin-top: -40px;position: relative;z-index: 2"><img src="./templates/img/searchbuttom.png" class="searchpic"></div>
+        </div>
+       <div style="height: 40px;width: 100%"></div>
+       <div class="newcomtus_box">
+          <div class="nb_d1">
+               <img src="./templates/img/notok.png">
+           </div>
+           <div class="nb_d2">
+               不显示其他部门
+           </div>
+           <a href="newknowledge.php">
+           <div class="nb_d3" >
+               <input type="button"  value="新建知识">
+           </div>
+           </a>
+           <div class="clear"></div>
+
+       </div>
+        <div class="userwork_box">
+          <{section name=sec1 loop=$list}>
+           <div class="user_a" data-name="0">
+               <div class="kp_li_d2"><span ><{$list[sec1].name}></span>&nbsp;&nbsp;于&nbsp;&nbsp;<span><{$list[sec1].q_time}></span>&nbsp;&nbsp;提问：<span><{$list[sec1].question}></span> </div> 
+           </div>
+
+            <div class="user_work_ul">
+                <ul>
+                  <{section name=sec2 loop=$list[sec1].answer}>
+                  <a href="changeanswer.php?a_id=<{$list[sec1].answer[sec2].a_id}>">
+                    <li class="">
+                       <div class="kp_li_d"><{$list[sec1].answer[sec2].name}></span>&nbsp;&nbsp;于&nbsp;&nbsp;<span><{$list[sec1].answer[sec2].a_time}></span>&nbsp;&nbsp;回答：<span><{$list[sec1].answer[sec2].answer}></span></div>
+                    </li>
+                    </a>
+                    <{/section}>
+                    <a href="newanswer.php?q_id=<{$list[sec1].q_id}>">
+                    <li>
+                        <div class="nb_d4">
+                            <input type="button" value="新增答案">
+                        </div>
+                       
+                    </li>
+                   </a>
+                </ul>
+            </div>  
+            <{/section}>     
+          </div>
+         
+        </div>
+        <br>
+        <div class="input_box submin_box">
+           <a href="knowledge.php?page=<{$page}>"><input type="button" value="更&nbsp;&nbsp;&nbsp;&nbsp;多" ></a> 
+        </div>
+        <br>
+    </div>
+</body>
+<script>
+    //选择显示签约和不签约客户按钮
+    var n = 0;
+   $('.nb_d1 img').click(function(){
+     //  alert('dee') ;
+      if(n%2==0)
+      {
+          $('.nb_d1 img').attr('src','./templates/img/ok.png');
+          n = n+1;
+      }
+       else
+      {
+          $('.nb_d1 img').attr('src','./templates/img/notok.png');
+          n = n-1;
+      }
+   })
+    //打开列表
+    $('.user_a').click(function(){
+        var t = parseInt($(this).attr('data-name'));
+       // alert(t);
+        if(t==0)
+        {
+            $(this).css({backgroundImage:"url('./templates/img/select2.png')"});
+            $(this).next('.user_work_ul').fadeIn();
+            t=1;
+            $(this).attr("data-name",function(){
+                var a=t;
+                return a;
+            } )
+        }
+         else
+        {
+            $(this).css({backgroundImage:"url('./templates/img/select.png')"});
+            $(this).next('.user_work_ul').fadeOut();
+            t=0;
+            $(this).attr("data-name",function(){
+                var a=t;
+                return a;
+            } )
+        }
+    })
+    //搜索
+    $('#searchsubmit').click(function(){
+      var search=$("#search").val();
+      window.location.href="knowledge.php?search="+search+"";
+    })
+</script>
+</html>
