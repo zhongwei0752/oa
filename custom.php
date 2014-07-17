@@ -75,7 +75,7 @@ while($value=  mysql_fetch_array($query)){
 	$list[]=$value;
 }
 $count=count($list);
-if($count<10){
+if($count=='10'){
 	$count='1';
 }else{
 	$count='0';
