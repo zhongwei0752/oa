@@ -65,7 +65,6 @@ if($_POST){
     	}
 	}
 }
-/*$uid=decrypt("$_COOKIE[uid]");*/
 $uid=$_GET['uid'];
 if($uid){
 	$query=mysql_query("SELECT * FROM space where uid='$uid'");
@@ -111,6 +110,7 @@ if($uid){
 }
 $loginuid=decrypt("$_COOKIE[uid]");
 $smarty->assign('wxkey',$_GET['wxkey']);
+$smarty->assign('logininguid',$loginuid);
 $smarty->assign('uid',$_GET['uid']);
 if($loginuid==$_GET['uid']){
 	$smarty->assign('loginuid','1');
