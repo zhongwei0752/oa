@@ -56,7 +56,9 @@ $uid=$_GET['uid'];
 		$count2='0';
 	}
 /*	$newqianyue=count($list1);*/
-
+$spacequery=mysql_query("SELECT * FROM space where uid='$uid'");
+$spacevalue=mysql_fetch_array($spacequery);
+$smarty->assign('username',$spacevalue['username']);
 $smarty->assign('count',$count['num']);
 $smarty->assign('newcustom',$newcustom);
 $smarty->assign('count1',$count1['num']);
