@@ -23,10 +23,10 @@ include("template.php");
 //本月客户量
 	$countquery= mysql_query("SELECT count(*) as num FROM custom where uid='$uid'");
 	$count= mysql_fetch_array($countquery);
-	$query = mysql_query("SELECT * FROM custom where uid='$uid'"); 
-	while ($value = mysql_fetch_array($query)) {
-		if(date("Y-m",$value['time'])==$date){
-			$list[]=$value;
+	$kehuquery = mysql_query("SELECT * FROM custom where uid='$uid'"); 
+	while ($kehuvalue = mysql_fetch_array($kehuquery)) {
+		if(date("Y-m",$kehuvalue['time'])==$date){
+			$list[]=$kehuvalue;
 		}	
 	}
 	$newcustom=count($list);
