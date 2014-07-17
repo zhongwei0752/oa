@@ -65,7 +65,8 @@ if($_POST){
     	}
 	}
 }
-$uid=decrypt("$_COOKIE[uid]");
+/*$uid=decrypt("$_COOKIE[uid]");*/
+$uid=$_GET['uid'];
 if($uid){
 	$query=mysql_query("SELECT * FROM space where uid='$uid'");
 	$value=mysql_fetch_array($query);
