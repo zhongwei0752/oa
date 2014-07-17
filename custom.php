@@ -74,7 +74,13 @@ while($value=  mysql_fetch_array($query)){
 	}
 	$list[]=$value;
 }
-$smarty->assign('list',$list);
+$count=count($list);
+if($count<10){
+	$count='1';
+}else{
+	$count='0';
+}
+$smarty->assign('count',$count);
 if($_GET['status']=='qianyue'){
 $smarty->assign('qianyue','1');
 }
