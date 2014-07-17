@@ -43,7 +43,7 @@ if($_POST){
 	    echo "</script>";	
     }
 	}else{
-    if(empty($username)||empty($injob)||empty($branch)||empty($position)||empty($allowcts)||empty($allowctc)||empty($allowsearch)||empty($allowyunying)||empty($allowusers)||empty($allowuserc)||empty($password)){
+    if(empty($username)||empty($injob)||empty($branch)||empty($position)||empty($password)){
     	echo "<script language='javascript' type='text/javascript'>";
 	    echo "alert('不能有空值')";
 	    echo "</script>";
